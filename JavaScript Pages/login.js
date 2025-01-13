@@ -37,7 +37,7 @@ loginForm.addEventListener("submit", (event) => {
         // Save the logged-in user's data in sessionStorage for the current session
         alert("Login successful! Redirecting...");
         // Redirect the user to the home page
-        window.location.href = "home.html";
+        window.location.href = "homeP.html";
     } else {
         // If no match is found, show an error message
         alert("Invalid username or password. Please try again.");

@@ -322,8 +322,60 @@ ul {
     padding: 15px 0;
     font-size: 1.2rem;
     font-weight: bold;
-<<<<<<< HEAD
   }
+
+
+
+  .banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--main-color);
+    color: white;
+    margin-top: 60px;
+    padding: 20px 50px;
+    height: 100px;
+    width: 90%; 
+    margin: 60px;
+}
+
+.banner .banner-text {
+    font-size: 20px;
+}
+
+
+.banner .banner-button button {
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--second-color);
+    transition: ease-in-out;
+    font-weight: bold;
+    color: white;
+}
+
+.banner .banner-button button:hover {
+
+    background-color: white;
+    color: #0a4556;
+}
+
+@media (max-width:426px) {
+    .banner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--main-color);
+        color: white;
+        margin-top: 60px;
+        padding: 20px 50px;
+        height: 200px;
+        width: 90%;
+        margin: 60px;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+}
 
 
 
@@ -347,57 +399,3 @@ ul {
         bottom: -100px;
     }
 }
-=======
-}
-
-.banner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--main-color);
-    color: white;
-    margin-top: 60px;
-    padding: 20px 50px;
-    height: 100px;
-    /* width: 90%; */
-    margin: 60px;
-}
-
-.banner .banner-text {
-    font-size: 20px;
-}
-
-
-.banner .banner-button button {
-    padding: 10px;
-    border-radius: 15px;
-    border: none;
-    background-color: var(--second-color);
-    transition: ease-in-out;
-    font-weight: bold;
-    color: white;
-}
-
-.banner .banner-button button:hover {
-   
-    background-color: white;
-    color: #0a4556;
-}
-
-@media (max-width:426px) {
-    .banner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: var(--main-color);
-        color: white;
-        margin-top: 60px;
-        padding: 20px 50px;
-        height: 200px;
-        /* width: 90%; */
-        margin: 60px;
-        flex-wrap: wrap;
-        flex-direction: column;
-    }
-}
->>>>>>> 60645e0c093b14582595a261cf330e2988042a1e

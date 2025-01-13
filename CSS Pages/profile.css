@@ -1,9 +1,28 @@
-.body {
+:root {
+    --main-color: #0a4556;
+    --transparent-color: rgb(15 116 143 / 70%);
+    --section-padding: 100px;
+    --para-color: #3d6b77;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-  }
+}
 
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+   
+
+}
 
 /* Start Header */
 
@@ -12,12 +31,21 @@ ul {
 
 } 
 
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure navbar stays above the profile */
+}
+
+
  .navbar {
     padding: 0px;
 }
 
 .container-fluid {
      background-color: var(--main-color);
+
 }
 
 .navbar-brand {
@@ -119,21 +147,26 @@ ul {
 
 .profile {
     display: flex;
-    justify-content: baseline;
+    /* justify-content: baseline; */
     border-radius: 15px;
     margin: 4%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #F9FEFA;
-    height: 500px;
+    /* height: 500px; */
+    margin-top: 200px; /* Add enough space to clear the navbar */
+    position: relative;  /* Add relative positioning */
+
+
 }
 
 .img {
     height: 90px;
-    width: 35%;
+    width: 95%;
     margin-top: 25%;
     border: 3px solid #2C383C;
     border-radius: 50%;
     cursor: pointer;
+
 }
 
 .div1 {
@@ -141,6 +174,8 @@ ul {
     justify-content: center;
     text-align: center;
     border-radius: 15px;
+
+    
 
 
 }
@@ -164,6 +199,7 @@ ul {
     box-sizing: border-box;
     border: 2px solid #2C383C;
     border-radius: 5px;
+    padding: 5px 10px 10px;
 }
 
 .flname {
@@ -204,11 +240,14 @@ ul {
     font-size: 14px;
     transition: all 0.3s ease;
     width: 11%;
-}
+    padding-top: 10px;
 
+}
 .botton:hover {
-    background-color: #3E4A4F;
+
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+
 }
 
 .error-message {
@@ -225,6 +264,8 @@ ul {
     border: 2px solid #2C383C;
     border-radius: 5px;
     width: 42%;
+    padding: 5px 10px 10px;
+
 }
 
 @media (max-width: 768px) {
@@ -276,6 +317,10 @@ ul {
         margin-top: 20px;
         width: 20%;
         right: -76%;
+        text-align: center;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        padding-top: 13px;
     }
 
     .hr {

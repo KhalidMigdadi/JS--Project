@@ -4,44 +4,51 @@ let submitButton = document.querySelector(".submit-button");
 let resultsContainer = document.querySelector(".results");
 let currentIndex = 0;
 let rightAnswers = 0;
+// Retrieves the saved quiz type from local storage.
 let savedValue = localStorage.getItem("savedValue");
 
 
 
-
-
-
-
+//  Fetching Questions
+// This function loads quiz data from a JSON file (specified in savedValue).
+// fetch retrieves the file, and await response.json() converts the response into a usable JavaScript object.
 async function getQuestions() {
+
   const response = await fetch(savedValue);
   const questionsObject = await response.json();
-  const qCount = questionsObject.length;
+  const qCount = questionsObject.length; // the total number of questions
 
   addQuestionData(questionsObject[currentIndex], qCount);
 
 
+
+  // Handling the "Submit" Button
+
   submitButton.onclick = () => {
-    const theRightAnswer = questionsObject[currentIndex].right_answer;
+    const theRightAnswer = questionsObject[currentIndex].right_answer; // It gets the correct answer for the current question 
 
-    saveAnswerToLocalStorage(questionsObject[currentIndex]);
+    saveAnswerToLocalStorage(questionsObject[currentIndex]);  // The user’s answer is saved to local storage.
 
-    currentIndex++;
+    currentIndex++;  // currentIndex is incremented to move to the next question
 
     checkAnswer(theRightAnswer, qCount);
 
     quizArea.innerHTML = "";
-    answersArea.innerHTML = "";
+    answersArea.innerHTML = ""; // The question and answers areas are cleared
 
-    addQuestionData(questionsObject[currentIndex], qCount);
+    addQuestionData(questionsObject[currentIndex], qCount); // displays the next question
 
-    showResults(qCount);
+    showResults(qCount); // checks if it’s the last question and displays the result
   };
 }
 
 getQuestions();
 
-function addQuestionData(obj, count) {
-  if (currentIndex < count) {
+
+// Adding Question Data
+
+function addQuestionData(obj, count) { // displays the question title in the .quiz-area.
+  if (currentIndex < count) { // It loops to create 4 answer options and appends them as radio buttons for user selection.
     let questionTitle = document.createElement("h2");
     let questionText = document.createTextNode(obj["title"]);
     questionTitle.appendChild(questionText);
@@ -220,3 +227,6 @@ function showResults(count) {
     resultsContainer.appendChild(backButton);
   }
 }
+
+
+

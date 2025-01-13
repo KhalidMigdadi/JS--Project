@@ -117,27 +117,6 @@ ul {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-/* 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    background-color: #f4f4f4;
-    flex-direction: column;
-} */
-
 header {
     position: relative;
     z-index: 10;
@@ -147,13 +126,17 @@ header {
     padding: 20px;
 }
 
-.container {
+.container-contact {
     display: flex;
-    width: 80%;
+    justify-content: center;
     background: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
+    width: 80%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 70px;
 }
 
 .contact-info {
@@ -246,7 +229,7 @@ header {
         height:74px;
     }
     
-   .container{
+   .container-contact{
     display: flex;
     flex-direction: column;
    } 
