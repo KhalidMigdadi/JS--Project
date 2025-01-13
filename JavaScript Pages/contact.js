@@ -60,8 +60,8 @@ document.getElementById("con-form").addEventListener("submit", function (e) {
     })
     .then(function (response) {
         
-        console.log("Message sent successfully:", response);
-        alert("Message sent successfully!");
+        console.log("Your message has been sent successfully!", response);
+        document("Message sent successfully!");
         document.getElementById("name").value = "";
 
 document.getElementById("email").value = "";
@@ -71,6 +71,7 @@ document.getElementById("message").value = "";
         
     }, function (error) {
         console.error("Message failed to send:", error);
-        alert("Failed to send message. Please try again.");
+        document("Failed to send message. Please try again.");
+        successMessage.style.color = 'green';
     });
 });
