@@ -58,6 +58,7 @@ function toggleEditing() {
             isEditing = false;
             inputs.forEach(input => input.disabled = true);
             editButton.textContent = "Edit";
+            
         }
     } else {
         isEditing = true;
