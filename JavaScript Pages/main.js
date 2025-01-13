@@ -25,7 +25,22 @@ async function getQuestions() {
   // Handling the "Submit" Button
 
   submitButton.onclick = () => {
-    const theRightAnswer = questionsObject[currentIndex].right_answer; // It gets the correct answer for the current question 
+    const theRightAnswer = questionsObject[currentIndex].right_answer; // Get the correct answer for the current question
+
+    let answers = document.getElementsByName("question");
+    let isAnswerSelected = false; // Flag to check if an answer is selected
+
+    for (let i = 0; i < answers.length; i++) {
+      if (answers[i].checked) {
+        isAnswerSelected = true;
+        break;
+      }
+    }
+
+    if (!isAnswerSelected) {
+      alert("Please select an answer before proceeding.");
+      return; // Stop execution if no answer is selected
+    }
 
     saveAnswerToLocalStorage(questionsObject[currentIndex]);  // The user’s answer is saved to local storage.
 
@@ -227,6 +242,3 @@ function showResults(count) {
     resultsContainer.appendChild(backButton);
   }
 }
-
-
-
