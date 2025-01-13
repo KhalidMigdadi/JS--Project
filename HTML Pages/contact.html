@@ -67,10 +67,10 @@
         </div>
         <div class="contact-form">
             <h2>Send a Message</h2>
-            <form>
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <form id="con-form">
+                <input type="text" name="name" placeholder="Your Name" required id="name">
+                <input type="email" name="email" placeholder="Your Email" required id="email">
+                <textarea name="message" rows="5" placeholder="Your Message" required id="message"></textarea>
                 <button type="submit">Send Message</button>
             </form>
         </div>
@@ -225,7 +225,7 @@
     </div>
     <!-- End Footer -->
 
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="../JavaScript Pages/contact.js"></script>
     <!-- BootStrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script></body>

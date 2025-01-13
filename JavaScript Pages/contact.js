@@ -1,3 +1,4 @@
+console.log("hi");
 const textarea = document.querySelector('textarea[name="message"]');
 const submitButton = document.querySelector('button[type="submit"]'); // حدد زر الإرسال
 const charCounter = document.createElement('p');
@@ -37,3 +38,39 @@ document.querySelector('form').addEventListener('submit', function (e) {
 });
 
 
+emailjs.init("FDAg8VNtcIrRBbQQ7");  
+
+
+document.getElementById("con-form").addEventListener("submit", function (e) {
+    e.preventDefault(); 
+
+    // Get form data
+    let name = document.getElementById("name").value;
+   
+//    let lastName = document.getElementById("lastName").value;
+ let email = document.getElementById("email").value;
+   let message = document.getElementById("message").value;
+
+    // Send data to EmailJS
+    emailjs.send("service_db90d88", "template_w0cze6p", {
+        firstName: name,
+       
+        email: email,
+        message: message
+    })
+    .then(function (response) {
+        
+        console.log("Message sent successfully:", response);
+        alert("Message sent successfully!");
+        document.getElementById("name").value = "";
+
+document.getElementById("email").value = "";
+document.getElementById("message").value = "";
+        
+       
+        
+    }, function (error) {
+        console.error("Message failed to send:", error);
+        alert("Failed to send message. Please try again.");
+    });
+});
