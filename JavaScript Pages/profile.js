@@ -64,6 +64,7 @@ function toggleEditing() {
         isEditing = true;
         inputs.forEach(input => input.disabled = false);
         editButton.textContent = "Save";
+        editButton.style.padding = "10px";
     }
 }
 

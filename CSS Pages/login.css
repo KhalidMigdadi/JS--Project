@@ -20,37 +20,6 @@ body {
 }
 
 
-/* Start Header /
-
-ul {
-    list-style: none;
-
-} 
-
-
- .navbar {
-    padding: 0px;
-}
-
-.container-fluid {
-     background-color: var(--main-color);
-}
-
-.navbar-brand {
-    margin-left: 7%;
-    margin-top: 5px;
-}
-
-@media (max-width: 426px) {
-    .navbar-brand img {
-        margin-left: -57px;
-
-    }
-}
-
-/ in mobile make it in center */
-
-
 /* Start Header */
 
 ul {

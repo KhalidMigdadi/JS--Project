@@ -67,28 +67,26 @@ ul {
 }
 
 
-#profile {
+#login {
     margin-left: 20px;
 }
 
-#profile,
-#logout {
+#register,
+#login {
     background-color: --main-color;
     color: var(--main-color);
-    padding: 5px 15px;
+    padding: 5px;
     border-radius: 15%;
     border: 1px solid #fff;
     margin-top: -8px;
 
 
 }
-
-#profile:hover,
-#logout:hover {
-    color: #fff;
+#register:hover,
+#login:hover {
+    color:#fff;
     background-color: var(--main-color);
 }
-
 
 @media (max-width: 426px) {
     .navbar-collapse {
@@ -119,7 +117,6 @@ ul {
     }
 
 }
-
 
 
 /* Slider */

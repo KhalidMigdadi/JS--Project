@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz Results</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
+
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -48,7 +50,8 @@
       .chosen-answer {
         font-weight: bold;
       }
-      .back-button {
+      .back-button,
+      .btn-primary {
         display: block;
         margin: 20px auto;
         padding: 10px 20px;
@@ -59,21 +62,24 @@
         cursor: pointer;
         font-size: 16px;
       }
-      .back-button:hover {
+      .back-button:hover,
+      .btn-primary:hover {
         background-color: #005bb5;
       }
     </style>
   </head>
   <body>
-    <h1>Quiz Results</h1>
-    <h2 class="info" id="aaaa" style="text-align: center"></h2>
-    <div id="table-container"></div>
-    <button
-      class="back-button"
-      onclick="window.location.href='../HTML Pages/applyTest.html'"
-    >
-      Back to Home
-    </button>
+    <div id="pdf">
+      <h1>Quiz Results</h1>
+      <h2 class="info" id="aaaa" style="text-align: center"></h2>
+      <div id="table-container"></div>
+    </div>
+      <button class="back-button" onclick="window.location.href='../HTML Pages/applyTest.html'">
+        Back to Home
+      </button>
+      <div>
+        <button class="btn1 btn-primary" id="download">Download PDF</button>
+      </div>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -138,6 +144,23 @@
         aaaa.textContent = `You answered ${correctAnswersCount} out of ${userAnswers2.length} questions correctly.`;
         tableContainer.appendChild(resultSummary);
       });
+    // download
+      window.onload = function () {
+      document.getElementById("download").addEventListener("click", () => {
+        const pdf = document.getElementById("pdf");
+        if (pdf.innerHTML.trim() !== "") {
+          const opt = {
+            margin: -.5,
+            filename: 'quiz_results.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+          };
+          html2pdf().from(pdf).set(opt).save();
+        }
+      });
+    };
+
     </script>
   </body>
 </html>

@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz Results</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -47,20 +49,22 @@
     .chosen-answer {
       font-weight: bold;
     }
-    .back-button {
-      display: block;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #0a4556;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .back-button:hover {
-      background-color: #005bb5;
-    }
+      .back-button,
+      .btn-primary {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #0a4556;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .back-button:hover,
+      .btn-primary:hover {
+        background-color: #005bb5;
+      }
     .result-summary {
       text-align: center;
       font-size: 18px;
@@ -71,27 +75,32 @@
   </style>
 </head>
 <body>
-  <h1>Quiz Results</h1>
-  <h2 class="info" id="cont" style="text-align: center;"></h2>
-  <div id="table-container"></div>
-  <button class="back-button" onclick="window.location.href='../HTML Pages/applyTest.html'">Back to Home</button>
-
+  <div id="pdf">
+    <h1>Quiz Results</h1>
+    <h2 class="info" id="aaaa" style="text-align: center"></h2>
+    <div id="table-container"></div>
+  </div>
+    <button class="back-button" onclick="window.location.href='../HTML Pages/applyTest.html'">
+      Back to Home
+    </button>
+    <div>
+      <button class="btn1 btn-primary" id="download">Download PDF</button>
+    </div>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const tableContainer = document.getElementById("table-container");
+      const resultHeader = document.getElementById("aaaa"); // h2 element for displaying result
 
-      // جلب البيانات من LocalStorage الخاصة بـ userAnswers
       const userAnswers = JSON.parse(localStorage.getItem("userAnswers")) || [];
 
       if (userAnswers.length === 0) {
         tableContainer.innerHTML = "<p>No results available to display.</p>";
+        resultHeader.textContent = "No results available.";
         return;
       }
 
-      // إنشاء الجدول
       const table = document.createElement("table");
 
-      // إنشاء الصف الرئيسي للرؤوس
       const headerRow = document.createElement("tr");
       const headers = ["Question", "Chosen Answer", "Correct Answer"];
       headers.forEach(headerText => {
@@ -101,9 +110,8 @@
       });
       table.appendChild(headerRow);
 
-      let correctAnswersCount = 0; // عد الإجابات الصحيحة
+      let correctAnswersCount = 0;
 
-      // إضافة البيانات إلى الجدول
       userAnswers.forEach(answer => {
         const row = document.createElement("tr");
 
@@ -118,10 +126,9 @@
         correctCell.textContent = answer.correctAnswer;
         correctCell.classList.add("correct-answer");
 
-        // إذا كانت الإجابة المختارة صحيحة، قم بتلوينها باللون الأخضر
         if (answer.chosenAnswer === answer.correctAnswer) {
           chosenCell.style.color = "green";
-          correctAnswersCount++; // زيادة العد في حال كانت الإجابة صحيحة
+          correctAnswersCount++;
         } else {
           chosenCell.style.color = "red";
         }
@@ -133,16 +140,32 @@
         table.appendChild(row);
       });
 
-      // إضافة الجدول إلى الصفحة
       tableContainer.appendChild(table);
 
-      // عرض عدد الإجابات الصحيحة
-      let aa=document.getElementById('cont')
+      const resultSummaryText = `You answered ${correctAnswersCount} out of ${userAnswers.length} questions correctly.`;
+      resultHeader.textContent = resultSummaryText;
+
       const resultSummary = document.createElement("p");
       resultSummary.classList.add("result-summary");
-      aa.textContent = `You answered ${correctAnswersCount} out of ${userAnswers.length} questions correctly.`;
+      resultSummary.textContent = resultSummaryText;
       tableContainer.appendChild(resultSummary);
     });
+
+    window.onload = function () {
+      document.getElementById("download").addEventListener("click", () => {
+        const pdf = document.getElementById("pdf");
+        if (pdf.innerHTML.trim() !== "") {
+          const opt = {
+            margin: -.5,
+            filename: 'quiz_results.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+          };
+          html2pdf().from(pdf).set(opt).save();
+        }
+      });
+    };
   </script>
 </body>
 </html>
